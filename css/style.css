@@ -1,0 +1,51 @@
+.grande { font-size: 60px; }
+*{
+ margin: 0px;
+ padding: 0px;
+}
+#general{
+  margin: auto;
+  padding-top:20px;
+  margin-top: 15px;
+  width: 600px;
+  height: 600px;
+  background-color: aquamarine;
+} 
+#caja1{
+
+  margin: auto;
+
+  width: 560px;
+  height: 150px;
+  background-color: purple;
+}
+#caja2{
+
+  margin: auto;
+  margin-top: 20px;
+
+  width: 560px;
+
+  height: 150px;
+
+  background-color: lightskyblue;
+
+}
+#caja3{
+  margin: auto;
+  margin-top:20px;
+  margin-left: 20px;
+  float: left;
+  width: 250px;
+  height: 200px;
+  background-color: yellow;
+}
+#caja4{
+  margin: auto;
+  margin-right: 20px;
+  margin-top: 20px;
+  float: right;
+  width: 250px;
+  height: 200px;
+  background-color: green;
+}
