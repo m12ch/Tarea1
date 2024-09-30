@@ -1,0 +1,43 @@
+import socket
+import sys
+
+def http_client(url):
+    # Definir el puerto HTTP por defecto (80)
+    port = 80
+    # Crear la solicitud GET HTTP básica
+    request = f"GET / HTTP/1.1\r\nHost: {url}\r\nConnection: close\r\n\r\n"
+    
+    try:
+        # Resolver la dirección IP del servidor
+        ip = socket.gethostbyname(url)
+        print(f"Conectando a {url} [{ip}] en el puerto {port}...\n")
+
+        # Crear el socket TCP
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            # Conectar al servidor en el puerto 80
+            s.connect((ip, port))
+            # Enviar la solicitud HTTP al servidor
+            s.sendall(request.encode())
+            
+            # Recibir la respuesta del servidor
+            response = b""
+            while True:
+                data = s.recv(4096)  # Leer hasta 4KB de datos
+                if not data:
+                    break
+                response += data
+
+        # Decodificar y mostrar la respuesta completa (cabeceras y HTML)
+        print(response.decode())
+
+    except socket.gaierror:
+        print(f"Error: No se pudo resolver la URL '{url}'. Verifique la dirección.")
+    except Exception as e:
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Uso: python prog.py <URL>")
+    else:
+        url = sys.argv[1]
+        http_client(url)
